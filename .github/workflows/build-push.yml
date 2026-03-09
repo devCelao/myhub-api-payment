@@ -9,7 +9,7 @@ on:
         type: string
 
 env:
-  DOCKERHUB_IMAGE: api-management
+  DOCKERHUB_IMAGE: api-payment
 
 jobs:
   # ════════════════════════════════════════════════════════════════════════
@@ -42,7 +42,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ inputs.tag }}
-          path: myhub-api-management
+          path: myhub-api-payment
 
       - name: Checkout dos componentes compartilhados
         uses: actions/checkout@v4
@@ -63,7 +63,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: myhub-api-management/ManagementAPI/Dockerfile
+          file: myhub-api-payment/PaymentAPI/Dockerfile
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_IMAGE }}:${{ inputs.tag }}
